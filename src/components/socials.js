@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { SpeedDial, SpeedDialIcon, SpeedDialAction } from '@mui/material';
+import { SpeedDial, SpeedDialAction } from '@mui/material';
 
 import PublicIcon from '@mui/icons-material/Public';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const SocialDial = styled.nav `
     margin-top: 2rem;
@@ -14,10 +13,6 @@ const SocialDial = styled.nav `
     justify-content: center;
     position:fixed;
     bottom:0;
-`
-
-const ScrollButton = styled.div`
-    margin-bottom: 16px;
 `
 
 const actions = [
@@ -32,9 +27,6 @@ function openURL(url) {
 const Socials = () => {
     return (
         <SocialDial>
-            <ScrollButton>
-                <KeyboardArrowDownIcon />
-            </ScrollButton>
             <SpeedDial
                 ariaLabel="socials"
                 sx={{ position: 'fixed', bottom: 16, right: 16 }}
