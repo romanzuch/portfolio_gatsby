@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import NavigationBar from './Navbar';
 
 import Socials from "./socials";
+import ScrollDownButton from './scrollDownButton'
 
 const LayoutMain = styled.main `
     margin: 5rem 5rem 0 5rem;
@@ -18,6 +19,7 @@ const Layout = ({children}) => {
             <NavigationBar />
             <LayoutMain>
                 {children}
+                <ScrollDownButton />
                 <Socials />
             </LayoutMain>
         </>
