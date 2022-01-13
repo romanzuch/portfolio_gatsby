@@ -2,6 +2,8 @@ import React from "react";
 import styled from 'styled-components';
 import NavigationBar from './Navbar';
 
+import Socials from "./socials";
+
 const LayoutMain = styled.main `
     margin: 5rem 5rem 0 5rem;
     display: flex;
@@ -16,6 +18,7 @@ const Layout = ({children}) => {
             <NavigationBar />
             <LayoutMain>
                 {children}
+                <Socials />
             </LayoutMain>
         </>
     )
