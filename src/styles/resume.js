@@ -12,9 +12,9 @@ export const Info = styled.div`
 `
 
 export const InfoElement = styled.p`
-    color: grey;
     margin: 0;
     padding: 0.2rem 0 0 0;
+    font-style: italic;
 `
 
 export const Employer = styled.h2`
