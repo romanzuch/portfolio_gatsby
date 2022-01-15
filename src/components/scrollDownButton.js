@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 
 const ButtonDiv = styled.nav `
@@ -20,7 +20,7 @@ const ScrollDownButton = () => {
     return (
         <ButtonDiv>
             <ScrollButton>
-                <KeyboardArrowDownIcon />
+                <ArrowDownwardIcon color="action" fontSize="large" />
             </ScrollButton>
         </ButtonDiv>
     )
