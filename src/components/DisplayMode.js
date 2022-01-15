@@ -12,11 +12,8 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 
 const DisplayModeSwitcher = styled.main`
     margin-top: 2rem;
-    position: fixed;
     display: flex;
     flex-direction: row;
-    top: 0;
-    right: 0;
 `
 
 const DisplayModeSwitch = () => {
