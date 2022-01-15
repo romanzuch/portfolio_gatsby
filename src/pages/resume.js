@@ -1,22 +1,73 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import { ResumeHeader } from '../styles/resume';
+import { ResumeContent, ResumeHeader } from '../styles/resume';
 import { Info, InfoElement } from '../styles/resume';
 import { Employer, Role, Positions, Position } from '../styles/resume';
 import { RoleDescription, RoleDescriptionElement } from '../styles/resume';
-
+import ScrollDownButton from '../components/scrollDownButton'
+import { useEffect, useState } from "react";
 import Grid from '@mui/material/Grid';
+import { Constants } from '../components/Constants';
 
 export default function Resume() {
+
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const [windowWidth, setWindowWidth] = useState();
+
+    const handleScroll = () => {
+        const position = window.pageYOffset;
+        setScrollPosition(position);
+    };
+
+    const handleWidth = () => {
+        const { innerWidth: width } = window;
+        console.log(width);
+        setWindowWidth(width);
+
+    }
+
+    function ScrollIndicator() {
+        if (scrollPosition < 50) {
+            return <ScrollDownButton />
+        } else {
+            return <div />
+        }
+    }
+
+    function PositionsSeparator() {
+        if (windowWidth < 600) {
+            return <h3>SEPARATOR</h3>
+        } else {
+            return <div />
+        }
+    }
+
+    useEffect(() => {
+
+        document.title = 'romanzuch · resume'
+
+        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("width", handleWidth);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("width", handleWidth);
+        };
+    }, []);
+
     return (
-        <div>
+        <ResumeContent>
             <Layout>
                 <ResumeHeader>resume</ResumeHeader>
 
-                <Grid container spacing={3}>
+                <Grid container spacing={0}>
 
                     { /* station 1 */}
-                    <Grid item xs={3}>
+                    <Grid item 
+                        xs={Constants.gridSizing.small.left} 
+                        md={Constants.gridSizing.medium.left} 
+                        lg={Constants.gridSizing.large.left}
+                    >
                         <Info>
                             <Employer>medloop</Employer>
                             {/* here comes some info similar to LinkedIn */}
@@ -25,7 +76,11 @@ export default function Resume() {
                         </Info>
                     </Grid>
 
-                    <Grid item xs={9}>
+                    <Grid item 
+                        xs={Constants.gridSizing.small.right} 
+                        md={Constants.gridSizing.medium.right} 
+                        lg={Constants.gridSizing.large.right}
+                    >
                         <Positions>
                             <Position>
                                 {/* position 1 */}
@@ -34,8 +89,7 @@ export default function Resume() {
                                 <RoleDescription>
                                     <RoleDescriptionElement>development of a seamless patient experience to ensure easier access to health care</RoleDescriptionElement>
                                     <RoleDescriptionElement>advancements to our services to digitalize and improve the patient journey</RoleDescriptionElement>
-                                    <RoleDescriptionElement>carrying out client/user research</RoleDescriptionElement>
-                                    <RoleDescriptionElement>creating workflows, wireframes, mockups, and user stories</RoleDescriptionElement>
+                                    <RoleDescriptionElement>creating workflows, wireframes, mockups, and user stories, and carrying out client/user research</RoleDescriptionElement>
                                     <RoleDescriptionElement>technical onboarding of new colleagues, including setting up keys and vpn connections</RoleDescriptionElement>
                                     <RoleDescriptionElement>basically the go-to IT admin + support for the whole company</RoleDescriptionElement>
                                     <RoleDescriptionElement>used technology: whimsical, figma, jira, confluence</RoleDescriptionElement>
@@ -55,8 +109,14 @@ export default function Resume() {
                         </Positions>
                     </Grid>
 
+                    <PositionsSeparator />
+
                     { /* station 2 */}
-                    <Grid item xs={3}>
+                    <Grid item 
+                        xs={Constants.gridSizing.small.left} 
+                        md={Constants.gridSizing.medium.left} 
+                        lg={Constants.gridSizing.large.left}
+                    >
                         <Info>
                             <Employer>edag group</Employer>
                             {/* here comes some info similar to LinkedIn */}
@@ -65,7 +125,11 @@ export default function Resume() {
                         </Info>
                     </Grid>
 
-                    <Grid item xs={9}>
+                    <Grid item 
+                        xs={Constants.gridSizing.small.right} 
+                        md={Constants.gridSizing.medium.right} 
+                        lg={Constants.gridSizing.large.right}
+                    >
                         <Positions>
                             <Position>
                                 {/* position 3 */}
@@ -90,7 +154,11 @@ export default function Resume() {
                     </Grid>
 
                     { /* station 3 */}
-                    <Grid item xs={3}>
+                    <Grid item 
+                        xs={Constants.gridSizing.small.left} 
+                        md={Constants.gridSizing.medium.left} 
+                        lg={Constants.gridSizing.large.left}
+                    >
                         <Info>
                             <Employer>siemens</Employer>
                             {/* here comes some info similar to LinkedIn */}
@@ -99,7 +167,11 @@ export default function Resume() {
                         </Info>
                     </Grid>
 
-                    <Grid item xs={9}>
+                    <Grid item 
+                        xs={Constants.gridSizing.small.right} 
+                        md={Constants.gridSizing.medium.right} 
+                        lg={Constants.gridSizing.large.right}
+                    >
                         <Positions>
                             <Position>
                                 {/* position 5 */}
@@ -113,7 +185,11 @@ export default function Resume() {
                     </Grid>
 
                     { /* station 4 */}
-                    <Grid item xs={3}>
+                    <Grid item 
+                        xs={Constants.gridSizing.small.left} 
+                        md={Constants.gridSizing.medium.left} 
+                        lg={Constants.gridSizing.large.left}
+                    >
                         <Info>
                             <Employer>siemens</Employer>
                             {/* here comes some info similar to LinkedIn */}
@@ -122,7 +198,11 @@ export default function Resume() {
                         </Info>
                     </Grid>
 
-                    <Grid item xs={9}>
+                    <Grid item 
+                        xs={Constants.gridSizing.small.right} 
+                        md={Constants.gridSizing.medium.right} 
+                        lg={Constants.gridSizing.large.right}
+                    >
                         <Positions>
                             <Position>
                                 {/* position 6 */}
@@ -139,7 +219,9 @@ export default function Resume() {
 
                 </Grid>
 
+                <ScrollIndicator />
+
             </Layout>
-        </div>
+        </ResumeContent>
     )
 }
