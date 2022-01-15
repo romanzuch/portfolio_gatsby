@@ -48,6 +48,7 @@ export const RoleDescription = styled.ul`
 export const RoleDescriptionElement = styled.li`
     margin: 0;
     padding: 0.5rem;
+    font-weight: 300;
     
 `
 
