@@ -5,6 +5,7 @@ import { SpeedDial, SpeedDialAction } from '@mui/material';
 import PublicIcon from '@mui/icons-material/Public';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import { Icon } from '@iconify/react';
 
 const SocialDial = styled.nav `
     margin-top: 2rem;
@@ -16,8 +17,9 @@ const SocialDial = styled.nav `
 `
 
 const actions = [
-    { icon: <LinkedInIcon />, name: 'romanzuchowski', url: 'https://www.linkedin.com/in/romanzuchowski/' },
-    { icon: <GitHubIcon />, name: 'romanzuch', url: 'https://github.com/romanzuch' },
+    { icon: <LinkedInIcon />, name: 'linkedin', url: 'https://www.linkedin.com/in/romanzuchowski/' },
+    { icon: <GitHubIcon />, name: 'github', url: 'https://github.com/romanzuch' },
+    { icon: <Icon icon='mdi:stack-overflow' />, name: 'stackoverflow', url: 'https://stackoverflow.com/users/9220203/roman-zuchowski' }
   ];
 
 function openURL(url) {
