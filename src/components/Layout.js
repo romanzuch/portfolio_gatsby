@@ -24,7 +24,7 @@ const LayoutMain = styled.main `
 
 const DisplayModeSwitcher = styled.main`
     margin-top: 2rem;
-    position: fixed;
+    position: absolute;
     display: flex;
     flex-direction: row;
     top: 0;
