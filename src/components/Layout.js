@@ -71,7 +71,7 @@ const Layout = ({children}) => {
     return (
         <LayoutWrapper>
             <NavigationBar />
-            <DisplayModeSwitch />
+            {/*<DisplayModeSwitch />*/}
             <LayoutMain>
                 {children}
                 <Socials />
