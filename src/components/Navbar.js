@@ -12,8 +12,7 @@ const Navbar = styled.nav `
 
 const NavbarLink = styled(Link) `
     padding: 1;
-    margin: 10px; 
-    color: grey;
+    margin: 10px;
     text-decoration: none;
 `
 
