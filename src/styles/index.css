@@ -12,8 +12,18 @@
 
 .light-content {
     background: #e4e4e4;
+    color: #363636; /* shadow */
 }
 
 .dark-content {
-    background: #4d4141;
+    background: #777b7e; /* steel */
+    color: #d9dddc; /* pearl river */
+}
+
+.light-content a {
+    color: #363636; /* shadow */
+}
+
+.dark-content a {
+    color: #d9dddc; /* pearl river */
 }
