@@ -2,9 +2,18 @@
 
 * {
     margin: 0;
+    padding: 0;
     font-family: 'Source Sans Pro', sans-serif;
 }
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+.light-content {
+    background: #e4e4e4;
+}
+
+.dark-content {
+    background: #4d4141;
 }
