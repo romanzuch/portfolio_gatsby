@@ -12,22 +12,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 
 /* Display Mode */
-import { AppSettings } from "./Constants";
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import { useState } from "react";
-import { ChangeDisplayMode } from './Constants';
+import { useState, useEffect } from "react";
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
-
-const Navbar = styled.nav `
-    margin: 0;
-    padding-top: 2rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-`
 
 const NavbarLink = styled(Link) `
     padding: 1;
@@ -42,24 +32,73 @@ const DisplayModeSwitcher = styled.main`
 
 const DisplayModeSwitch = () => {
 
-    const [ displayModeIcon, setDisplayModeIcon ] = useState(<LightModeIcon />)
+    const [ displayMode, setDisplayMode ] = useState();
+    const [ switchState, setSwitchState ] = useState(false);
+
+    useEffect(() => {
+
+        checkCorrectDisplayMode()
+
+    }, []);
+
+    const checkCorrectDisplayMode = () => {
+
+        const storedDisplayMode = (sessionStorage.getItem('displayMode') ? sessionStorage.getItem('displayMode') : 'light');
+        setDisplayMode(storedDisplayMode);
+
+        const storedSwitchState = (sessionStorage.getItem('switchState') ? sessionStorage.getItem('switchState') : 'false');
+        setSwitchState(storedSwitchState === 'true' ? true : false);
+
+        switch (storedSwitchState) {
+            case 'false':
+                document.body.classList.remove('dark-content');
+                document.body.classList.add('light-content');
+                break;
+            case 'true':
+                document.body.classList.remove('light-content');
+                document.body.classList.add('dark-content');
+                break;
+            default:
+                console.log('default');
+                break;
+        }
+    }
 
     const changeDisplayMode = () => {
 
-        if (AppSettings.displayMode === 'light') {
+        if (displayMode === 'light') {
 
-            ChangeDisplayMode('dark');
-            setDisplayModeIcon(<DarkModeIcon />);
+            setDisplayMode('dark');
+            setSwitchState(true);
+            sessionStorage.setItem('displayMode', 'dark');
+            sessionStorage.setItem('switchState', true);
             document.body.classList.remove('light-content');
             document.body.classList.add('dark-content');
 
-        } else if (AppSettings.displayMode === 'dark') {
+        } else if (displayMode === 'dark') {
 
-            ChangeDisplayMode('light');
-            setDisplayModeIcon(<LightModeIcon />);
+            setDisplayMode('light');
+            setSwitchState(false);
+            sessionStorage.setItem('displayMode', 'light');
+            sessionStorage.setItem('switchState', false);
             document.body.classList.remove('dark-content');
             document.body.classList.add('light-content');
             
+        }
+
+        console.log('display mode: ', displayMode);
+        console.log('class list: ', document.body.classList.value);
+
+    }
+
+    const getDisplayModeIcon = () => {
+        switch (displayMode) {
+            case 'light':
+                return (<LightModeIcon />);
+            case 'dark':
+                return (<DarkModeIcon />);
+            default: 
+                return (<LightModeIcon />);
         }
     }
 
@@ -67,8 +106,8 @@ const DisplayModeSwitch = () => {
         <DisplayModeSwitcher>
             <FormGroup>
                 <FormControlLabel 
-                    control={<Switch defaultChecked />} 
-                    label={displayModeIcon} 
+                    control={<Switch checked={switchState} />} 
+                    label={getDisplayModeIcon()} 
                     onChange={changeDisplayMode}
                 />
             </FormGroup>
@@ -80,21 +119,13 @@ const NavigationBar = () => {
 
     /* App Bar */
     const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
-    };
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
     };
 
     return (
