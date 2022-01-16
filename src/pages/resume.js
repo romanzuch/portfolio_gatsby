@@ -4,54 +4,56 @@ import { ResumeContent, ResumeHeader } from '../styles/resume';
 import { Info, InfoElement } from '../styles/resume';
 import { Employer, Role, Positions, Position } from '../styles/resume';
 import { RoleDescription, RoleDescriptionElement } from '../styles/resume';
-import ScrollDownButton from '../components/scrollDownButton'
+import ScrollDownButton from '../components/scrollDownButton';
 import { useEffect, useState } from "react";
 import Grid from '@mui/material/Grid';
 import { Constants } from '../components/Constants';
 
 export default function Resume() {
 
+    const isScrollable = function (ele) {
+        // Compare the height to see if the element has scrollable content
+        const hasScrollableContent = ele.scrollHeight > ele.clientHeight;
+    
+        // It's not enough because the element's `overflow-y` style can be set as
+        // * `hidden`
+        // * `hidden !important`
+        // In those cases, the scrollbar isn't shown
+        const overflowYStyle = window.getComputedStyle(ele).overflowY;
+        const isOverflowHidden = overflowYStyle.indexOf('hidden') !== -1;
+    
+        return hasScrollableContent && !isOverflowHidden;
+    };
+
     const [scrollPosition, setScrollPosition] = useState(0);
-    const [windowWidth, setWindowWidth] = useState();
+    const [scrollable, setScrollable] = useState();
 
     const handleScroll = () => {
         const position = window.pageYOffset;
         setScrollPosition(position);
     };
 
-    const handleWidth = () => {
-        const { innerWidth: width } = window;
-        console.log(width);
-        setWindowWidth(width);
-
-    }
-
     function ScrollIndicator() {
-        if (scrollPosition < 50) {
-            return <ScrollDownButton />
+        if (scrollable) {
+            if (scrollPosition < 50) {
+                return <ScrollDownButton />
+            } else {
+                return <div />
+            }
         } else {
             return <div />
         }
-    }
-
-    function PositionsSeparator() {
-        if (windowWidth < 600) {
-            return <h3>SEPARATOR</h3>
-        } else {
-            return <div />
-        }
-    }
+    };
 
     useEffect(() => {
 
         document.title = 'romanzuch · resume'
 
+        setScrollable(isScrollable(document.body));
         window.addEventListener("scroll", handleScroll);
-        window.addEventListener("width", handleWidth);
 
         return () => {
             window.removeEventListener("scroll", handleScroll);
-            window.removeEventListener("width", handleWidth);
         };
     }, []);
 
@@ -108,8 +110,6 @@ export default function Resume() {
                             </Position>
                         </Positions>
                     </Grid>
-
-                    <PositionsSeparator />
 
                     { /* station 2 */}
                     <Grid item 
