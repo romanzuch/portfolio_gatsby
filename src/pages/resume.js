@@ -58,9 +58,11 @@ export default function Resume() {
     }, []);
 
     return (
-        <ResumeContent>
-            <Layout>
-                <ResumeHeader>resume</ResumeHeader>
+        <Layout>
+                
+            <ResumeContent>
+
+            <ResumeHeader>resume</ResumeHeader>
 
                 <Grid container spacing={0}>
 
@@ -219,9 +221,10 @@ export default function Resume() {
 
                 </Grid>
 
-                <ScrollIndicator />
+            </ResumeContent>
 
-            </Layout>
-        </ResumeContent>
+            <ScrollIndicator />
+
+        </Layout>
     )
 }
