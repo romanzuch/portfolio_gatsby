@@ -14,10 +14,10 @@ import Container from '@mui/material/Container';
 /* Display Mode */
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
 import { useState, useEffect } from "react";
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import { IOSSwitch } from './IosSwitch';
 
 const NavbarLink = styled(Link) `
     padding: 1;
@@ -106,7 +106,7 @@ const DisplayModeSwitch = () => {
         <DisplayModeSwitcher>
             <FormGroup>
                 <FormControlLabel 
-                    control={<Switch checked={switchState} />} 
+                    control={<IOSSwitch sx={{ m: 1 }} checked={switchState} />} 
                     label={getDisplayModeIcon()} 
                     onChange={changeDisplayMode}
                 />
