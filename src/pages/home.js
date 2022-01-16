@@ -1,17 +1,61 @@
 import React from 'react';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Layout from '../components/Layout';
+import ScrollDownButton from '../components/scrollDownButton'
 
 import { SiteHeader, Description } from '../styles/home';
 import { HeaderLarge, HeaderMedium, HeaderSmall } from '../styles/home';
+
 
 export default function Home() {
 
     useEffect(() => {
         document.title = 'romanzuch · home'
+
+        setScrollable(isScrollable(document.body));
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
     }, []);
 
+    const isScrollable = function (ele) {
+        // Compare the height to see if the element has scrollable content
+        const hasScrollableContent = ele.scrollHeight > ele.clientHeight;
+    
+        // It's not enough because the element's `overflow-y` style can be set as
+        // * `hidden`
+        // * `hidden !important`
+        // In those cases, the scrollbar isn't shown
+        const overflowYStyle = window.getComputedStyle(ele).overflowY;
+        const isOverflowHidden = overflowYStyle.indexOf('hidden') !== -1;
+    
+        return hasScrollableContent && !isOverflowHidden;
+    };
+
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const [scrollable, setScrollable] = useState();
+
+    const handleScroll = () => {
+        const position = window.pageYOffset;
+        setScrollPosition(position);
+    };
+
+    function ScrollIndicator() {
+        if (scrollable) {
+            if (scrollPosition < 50) {
+                return <ScrollDownButton />
+            } else {
+                return <div />
+            }
+        } else {
+            return <div />
+        }
+    };
+
     return (
-        <div>
+        <Layout>
             <SiteHeader>
                 <HeaderLarge>my name is roman.</HeaderLarge>
                 <HeaderMedium>i am a product manager and developer.</HeaderMedium>
@@ -39,6 +83,7 @@ export default function Home() {
                     i find that following an agile process with kanban boards works best for me when doing my own projects, but i also enjoy working in sprints when working on projects for my 9-5.
                 </p>
             </Description>
-        </div>
+            <ScrollIndicator />
+        </Layout>
     )
 }
