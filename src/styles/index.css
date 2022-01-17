@@ -8,10 +8,6 @@
     font-family: 'Oswald', sans-serif;
 }
 
-body {
-    background: #B9BBB6;
-}
-
 body a {
     color: #222021; /* shadow */
 }
@@ -21,11 +17,13 @@ body a {
 }
 
 .light-content {
+    --highlight-color: #74786f;
     background: #B9BBB6;
     color: #222021; /* shadow */
 }
 
 .dark-content {
+    --highlight-color: #4a4748;
     background: #222021; /* steel */
     color: #d9dddc; /* pearl river */
 }
