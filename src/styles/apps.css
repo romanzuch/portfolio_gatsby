@@ -1,0 +1,26 @@
+.AppContent {
+    margin: 0rem 3rem;
+    padding: 0;
+}
+
+.AppDescription {
+    background-color: var(--highlight-color);
+    padding: 1rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 2rem;
+    margin: 1rem 0;
+}
+
+.AppHeader {
+    margin: 0 0 1rem 0;
+}
+
+.AppImages {
+    padding: 1rem 3rem 0 0;
+    align-items: start;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
