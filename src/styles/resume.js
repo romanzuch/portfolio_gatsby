@@ -53,6 +53,6 @@ export const RoleDescriptionElement = styled.li`
 `
 
 export const ResumeContent = styled.div`
-    margin: 0 2rem 2rem 6rem;
+    margin: 0rem 3rem;
     padding: 0;
 `
